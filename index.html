@@ -10,28 +10,35 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            scroll-behavior: smooth;
         }
 
+        /* Body */
         body {
-            font-family: Arial, sans-serif;
             display: flex;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
+            transition: margin-left 0.3s;
         }
 
-        /* Sidebar Navigation */
+        /* Sidebar */
         .sidebar {
-            width: 250px;
+            width: 260px;
             height: 100vh;
-            background-color: #333;
+            background: #1a1a1a;
             color: white;
             padding-top: 20px;
             position: fixed;
+            left: 0;
             transition: 0.3s;
+            overflow-y: auto;
         }
 
         .sidebar h2 {
             text-align: center;
             margin-bottom: 20px;
+            font-size: 22px;
+            font-weight: bold;
         }
 
         .sidebar a {
@@ -40,65 +47,127 @@
             padding: 12px;
             text-decoration: none;
             text-align: center;
+            font-size: 16px;
+            transition: 0.3s;
         }
 
         .sidebar a:hover {
-            background-color: #555;
+            background: #444;
+        }
+
+        /* Sidebar Toggle Button */
+        .toggle-btn {
+            position: absolute;
+            left: 230px;
+            top: 20px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            background: none;
+            border: none;
+        }
+
+        /* When Sidebar Collapses */
+        .sidebar.closed {
+            width: 80px;
+        }
+
+        .sidebar.closed h2 {
+            display: none;
+        }
+
+        .sidebar.closed a {
+            text-align: left;
+            padding-left: 20px;
+            font-size: 18px;
+        }
+
+        .sidebar.closed .toggle-btn {
+            left: 50px;
         }
 
         /* Main Content */
         .content {
-            margin-left: 250px;
-            padding: 20px;
-            flex: 1;
-            transition: margin-left 0.3s;
+            margin-left: 260px;
+            padding: 40px;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .sidebar.closed + .content {
+            margin-left: 80px;
         }
 
         /* Banner */
         .banner img {
             width: 100%;
-            max-height: 300px;
+            max-height: 400px;
             object-fit: cover;
             border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Logos */
+        /* Logo Section */
         .logos {
-            text-align: center;
-            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
         }
 
         .logos img {
-            width: 150px;
-            margin: 10px;
+            width: 120px;
+            margin: 10px 0;
         }
 
         /* Sections */
         .section {
-            background-color: white;
-            padding: 20px;
-            margin-bottom: 20px;
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
             border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         h1, h2 {
             color: #333;
         }
 
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+
         /* Footer */
         footer {
             text-align: center;
-            padding: 10px;
-            background-color: #333;
+            padding: 15px;
+            background: #1a1a1a;
             color: white;
-            position: relative;
+            margin-top: 30px;
         }
 
-        /* Mobile Responsive */
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 220px;
+            }
+            .toggle-btn {
+                left: 200px;
+            }
+            .content {
+                margin-left: 220px;
+            }
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 width: 200px;
+            }
+            .toggle-btn {
+                left: 180px;
             }
             .content {
                 margin-left: 200px;
@@ -107,21 +176,28 @@
 
         @media (max-width: 600px) {
             .sidebar {
-                width: 100px;
+                width: 80px;
             }
-            .sidebar a {
-                font-size: 14px;
+            .sidebar h2, .sidebar a {
+                display: none;
+            }
+            .sidebar.closed {
+                width: 0;
+            }
+            .toggle-btn {
+                left: 20px;
             }
             .content {
-                margin-left: 100px;
+                margin-left: 0;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar Navigation -->
+    <!-- Sidebar -->
     <div class="sidebar">
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
         <h2>KITS IEDC</h2>
         <a href="#home">Home</a>
         <a href="#about">About</a>
@@ -133,7 +209,7 @@
 
     <!-- Main Content -->
     <div class="content">
-        <!-- Banner Section -->
+        <!-- Banner -->
         <div id="home" class="banner">
             <img src="IMG-20240325-WA0097.jpg" alt="KITS IEDC FAMILY BANNER">
         </div>
@@ -144,7 +220,6 @@
             <p>
                 KITS IEDC is the <b>Innovation and Entrepreneurship Development Centre</b> of <b>KITS</b>, 
                 dedicated to fostering a culture of <b>creativity, innovation, and entrepreneurship</b> among students.
-                Our mission is to empower young innovators to transform their ideas into successful startups and real-world solutions.
             </p>
         </div>
 
@@ -158,7 +233,7 @@
         <!-- Submit Section -->
         <div id="submit" class="section">
             <h2>Submit Your Ideas</h2>
-            <p>We encourage students to submit their startup ideas and innovative projects. Get guidance, mentorship, and funding opportunities!</p>
+            <p>We encourage students to submit their startup ideas and innovative projects.</p>
         </div>
 
         <!-- Events Section -->
@@ -167,23 +242,13 @@
             <ul>
                 <li>🚀 Hackathon - March 2025</li>
                 <li>💡 Innovation Workshop - April 2025</li>
-                <li>📢 Entrepreneurship Meetup - May 2025</li>
             </ul>
-        </div>
-
-        <!-- Collaboration Section -->
-        <div id="colab" class="section">
-            <h2>Collaborate with Us</h2>
-            <p>Partner with KITS IEDC to drive innovation, share expertise, and build the next generation of startups.</p>
         </div>
 
         <!-- Join Section -->
         <div id="join" class="section">
             <h2>Join Us!</h2>
-            <p>Are you an aspiring <b>entrepreneur, innovator, or problem solver</b>? Join <b>KITS IEDC</b> today and embark on your journey of <b>innovation and success</b>.</p>
-            <p>📍 <b>Location:</b> [Your Institution Address] <br>
-               📧 <b>Email:</b> [Your Contact Email] <br>
-               🌐 <b>Website:</b> [Your Website URL]</p>
+            <p>📧 Email: [Your Contact Email]</p>
         </div>
 
         <!-- Footer -->
@@ -193,16 +258,9 @@
     </div>
 
     <script>
-        // Smooth Scrolling Functionality
-        document.querySelectorAll('.sidebar a').forEach(anchor => {
-            anchor.addEventListener('click', function(event) {
-                event.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                document.getElementById(targetId).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('closed');
+        }
     </script>
 
 </body>
