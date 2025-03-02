@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KITS IEDC – Innovation & Entrepreneurship</title>
     
-    <!-- Google Font & Icons -->
+    <!-- Google Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     
@@ -21,23 +21,46 @@
 
         /* Background */
         body {
-            background: linear-gradient(to bottom, #2b5876, #4e4376);
+            background: #121212;
             color: white;
             overflow-x: hidden;
         }
 
-        /* Header Navigation */
+        /* Banner Section */
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: url('banner.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .banner h1 {
+            font-size: 45px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        /* Navbar */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            transition: background 0.3s;
+        }
+
+        .navbar img {
+            height: 40px;
         }
 
         .navbar a {
@@ -56,20 +79,19 @@
         .sidebar {
             width: 270px;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.9);
+            background: #181818;
             position: fixed;
             left: 0;
             top: 0;
             padding: 20px;
-            transition: transform 0.3s;
+            transition: 0.3s;
             box-shadow: 4px 0px 10px rgba(255, 255, 255, 0.1);
         }
 
-        .sidebar h2 {
-            text-align: center;
-            font-size: 22px;
-            color: #ffcc00;
-            font-weight: 600;
+        .sidebar img {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
         }
 
         .sidebar nav a {
@@ -158,15 +180,24 @@
 
     <!-- Navbar -->
     <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Events</a>
-        <a href="#">Join</a>
+        <img src="kits-iedc-logo.png" alt="KITS IEDC Logo">
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Events</a>
+            <a href="#">Join</a>
+        </nav>
+        <img src="ksum-logo.png" alt="KSUM Logo">
+    </div>
+
+    <!-- Banner Section -->
+    <div class="banner">
+        <h1>Welcome to KITS IEDC</h1>
     </div>
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <h2>KITS IEDC</h2>
+        <img src="kits-iedc-logo.png" alt="KITS IEDC">
         <nav>
             <a href="#about">About</a>
             <a href="#events">Events</a>
@@ -179,6 +210,7 @@
     <div class="content">
         <div id="about" class="section">
             <h1>About Us</h1>
+            <img src="iedc-image.jpg" alt="IEDC Team" width="100%">
             <p>
                 Welcome to KITS IEDC, a leading platform for innovation and entrepreneurship.  
                 Our mission is to create an ecosystem where students can transform their ideas into real-world solutions.
@@ -187,6 +219,7 @@
 
         <div id="events" class="section">
             <h2>Upcoming Events</h2>
+            <img src="event-banner.jpg" alt="Events" width="100%">
             <p>
                 Join our upcoming workshops, hackathons, and networking events designed to help  
                 aspiring entrepreneurs and innovators.
