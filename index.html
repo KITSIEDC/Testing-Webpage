@@ -3,254 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KITS IEDC – Innovation & Entrepreneurship</title>
-    
-    <!-- Google Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    
-    <!-- Styles -->
+    <title>KITS IEDC – Empowering Innovation & Entrepreneurship</title>
     <style>
+        /* Reset Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
         }
 
-        /* Background */
         body {
-            background: #121212;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #1e1e2f, #3a3a55);
             color: white;
-            overflow-x: hidden;
-        }
-
-        /* Banner Section */
-        .banner {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            background: url('banner.jpg') no-repeat center center/cover;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .banner h1 {
-            font-size: 45px;
-            font-weight: bold;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 15px;
-            border-radius: 5px;
-        }
-
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .navbar img {
-            height: 40px;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-            transition: 0.3s;
-        }
-
-        .navbar a:hover {
-            color: #ffcc00;
         }
 
         /* Sidebar */
         .sidebar {
-            width: 270px;
+            width: 280px;
             height: 100vh;
-            background: #181818;
+            background: #22223b;
             position: fixed;
-            left: 0;
-            top: 0;
-            padding: 20px;
             transition: 0.3s;
-            box-shadow: 4px 0px 10px rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
         }
 
-        .sidebar img {
-            display: block;
-            width: 80%;
-            margin: 10px auto;
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffcc00;
         }
 
-        .sidebar nav a {
+        .sidebar a {
             display: block;
-            padding: 12px;
-            margin: 10px 0;
-            text-decoration: none;
             color: white;
-            font-size: 16px;
-            border-radius: 5px;
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: 0.3s;
         }
 
-        .sidebar nav a:hover {
-            background: #ffcc00;
-            color: black;
-            transform: scale(1.05);
+        .sidebar a:hover {
+            background: #44445a;
         }
 
-        /* Content */
+        /* Sidebar Toggle */
+        .menu-btn {
+            display: none;
+            font-size: 24px;
+            background: none;
+            color: white;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        /* Main Content */
         .content {
-            margin-left: 300px;
-            padding: 50px;
+            margin-left: 280px;
+            padding: 20px;
+            flex: 1;
             transition: margin-left 0.3s;
         }
 
-        .section {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            margin-bottom: 40px;
+        /* Banner */
+        .banner img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
             border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
         }
 
-        .section.show {
-            opacity: 1;
-            transform: translateY(0);
+        /* Sections */
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
         }
 
         h1, h2 {
             color: #ffcc00;
-            font-weight: 600;
-            margin-bottom: 10px;
         }
 
-        p {
-            font-size: 17px;
-            line-height: 1.8;
-            text-align: justify;
+        /* Logos Section */
+        .logos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
         }
 
-        .glow-btn {
-            background: #ffcc00;
-            color: black;
-            padding: 12px 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: 0.3s;
-            border-radius: 5px;
-            text-transform: uppercase;
+        .logos img {
+            width: 150px;
+            margin: 10px;
+            filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.2));
+            transition: transform 0.3s ease-in-out;
         }
 
-        .glow-btn:hover {
-            box-shadow: 0px 0px 10px #ffcc00;
+        .logos img:hover {
             transform: scale(1.1);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #22223b;
+            color: white;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
             .sidebar {
-                width: 250px;
-                transform: translateX(-100%);
+                width: 220px;
+            }
+            .content {
+                margin-left: 220px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .sidebar {
+                width: 0;
+                overflow: hidden;
             }
             .content {
                 margin-left: 0;
+            }
+            .menu-btn {
+                display: block;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <div class="navbar">
-        <img src="kits-iedc-logo.png" alt="KITS IEDC Logo">
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Events</a>
-            <a href="#">Join</a>
-        </nav>
-        <img src="ksum-logo.png" alt="KSUM Logo">
-    </div>
-
-    <!-- Banner Section -->
-    <div class="banner">
-        <h1>Welcome to KITS IEDC</h1>
-    </div>
-
     <!-- Sidebar -->
-    <div class="sidebar">
-        <img src="kits-iedc-logo.png" alt="KITS IEDC">
-        <nav>
-            <a href="#about">About</a>
-            <a href="#events">Events</a>
-            <a href="#submit">Submit Ideas</a>
-            <a href="#join">Join Us</a>
-        </nav>
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar" id="sidebar">
+        <h2>KITS IEDC</h2>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#submit">Submit</a>
+        <a href="#events">Events</a>
+        <a href="#colab">Collaboration</a>
+        <a href="#join">Join Us</a>
     </div>
 
     <!-- Main Content -->
     <div class="content">
+        <div id="home" class="banner">
+            <img src="IMG-20240325-WA0097.jpg" alt="KITS IEDC FAMILY BANNER">
+        </div>
+
+        <!-- About Section -->
         <div id="about" class="section">
-            <h1>About Us</h1>
-            <img src="iedc-image.jpg" alt="IEDC Team" width="100%">
+            <h1>About KITS IEDC</h1>
             <p>
-                Welcome to KITS IEDC, a leading platform for innovation and entrepreneurship.  
-                Our mission is to create an ecosystem where students can transform their ideas into real-world solutions.
+                KITS IEDC is dedicated to fostering a culture of **creativity, innovation, and entrepreneurship** among students.
+                Our mission is to empower young innovators to transform their ideas into successful startups.
             </p>
         </div>
 
-        <div id="events" class="section">
-            <h2>Upcoming Events</h2>
-            <img src="event-banner.jpg" alt="Events" width="100%">
-            <p>
-                Join our upcoming workshops, hackathons, and networking events designed to help  
-                aspiring entrepreneurs and innovators.
-            </p>
+        <!-- Logos Section -->
+        <div class="logos">
+            <img src="Kitsiedc.png" alt="KITS IEDC Logo">
+            <img src="Ksumlogo.png" alt="KSUM Logo">
+            <img src="Iedc-logo.png" alt="IEDC Logo">
         </div>
 
+        <!-- Submit Section -->
         <div id="submit" class="section">
             <h2>Submit Your Ideas</h2>
-            <p>Have an idea? Submit it now and get mentorship, funding, and resources to bring it to life.</p>
-            <button class="glow-btn">Submit Now</button>
+            <p>We encourage students to submit their startup ideas and innovative projects.</p>
         </div>
 
-        <div id="join" class="section">
-            <h2>Join Us</h2>
-            <p>Be part of a thriving community that supports entrepreneurship and innovation.</p>
-            <button class="glow-btn">Join Now</button>
+        <!-- Events Section -->
+        <div id="events" class="section">
+            <h2>Upcoming Events</h2>
+            <ul>
+                <li>🚀 Hackathon - March 2025</li>
+                <li>💡 Innovation Workshop - April 2025</li>
+                <li>📢 Entrepreneurship Meetup - May 2025</li>
+            </ul>
         </div>
+
+        <!-- Collaboration Section -->
+        <div id="colab" class="section">
+            <h2>Collaborate with Us</h2>
+            <p>Partner with KITS IEDC to drive innovation and build the next generation of startups.</p>
+        </div>
+
+        <!-- Join Section -->
+        <div id="join" class="section">
+            <h2>Join Us!</h2>
+            <p>Join KITS IEDC today and embark on your journey of **innovation and success**.</p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 KITS IEDC. All Rights Reserved.</p>
+        </footer>
     </div>
 
-    <!-- JavaScript for Scroll Animations -->
     <script>
-        document.addEventListener("scroll", function() {
-            let sections = document.querySelectorAll(".section");
-            sections.forEach(section => {
-                let position = section.getBoundingClientRect().top;
-                let screenHeight = window.innerHeight;
-                if (position < screenHeight - 100) {
-                    section.classList.add("show");
-                }
-            });
-        });
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            if (sidebar.style.width === "220px") {
+                sidebar.style.width = "0";
+            } else {
+                sidebar.style.width = "220px";
+            }
+        }
     </script>
 
 </body>
