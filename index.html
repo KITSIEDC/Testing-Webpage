@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KITS IEDC – Empowering Innovation & Entrepreneurship</title>
+    <title>KITS IEDC – Innovation & Entrepreneurship</title>
     
-    <!-- Google Font -->
+    <!-- Google Font & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     
     <!-- Styles -->
     <style>
@@ -20,201 +21,203 @@
 
         /* Background */
         body {
-            background: linear-gradient(to right, #ececec, #ffffff);
-            background-attachment: fixed;
-            color: #333;
+            background: linear-gradient(to bottom, #2b5876, #4e4376);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Header Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ffcc00;
         }
 
         /* Sidebar */
         .sidebar {
-            width: 260px;
+            width: 270px;
             height: 100vh;
-            background-color: #222;
-            color: white;
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
             position: fixed;
-            transition: transform 0.3s ease-in-out;
-            overflow-y: auto;
+            left: 0;
+            top: 0;
+            padding: 20px;
+            transition: transform 0.3s;
+            box-shadow: 4px 0px 10px rgba(255, 255, 255, 0.1);
         }
 
         .sidebar h2 {
             text-align: center;
-            margin-bottom: 20px;
             font-size: 22px;
+            color: #ffcc00;
             font-weight: 600;
         }
 
         .sidebar nav a {
             display: block;
-            color: white;
             padding: 12px;
+            margin: 10px 0;
             text-decoration: none;
-            font-size: 15px;
-            font-weight: 400;
-            transition: 0.3s;
+            color: white;
+            font-size: 16px;
             border-radius: 5px;
+            transition: 0.3s;
         }
 
         .sidebar nav a:hover {
-            background-color: #444;
+            background: #ffcc00;
+            color: black;
+            transform: scale(1.05);
         }
 
-        /* Main Content */
+        /* Content */
         .content {
-            margin-left: 280px;
-            padding: 40px;
-            max-width: 1200px;
+            margin-left: 300px;
+            padding: 50px;
+            transition: margin-left 0.3s;
         }
 
-        /* Banner */
-        .banner img {
-            width: 100%;
-            max-height: 350px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Sections */
         .section {
-            background-color: white;
-            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
             margin-bottom: 40px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
-        .section:hover {
-            transform: translateY(-5px);
+        .section.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         h1, h2 {
-            color: #222;
-            margin-bottom: 15px;
+            color: #ffcc00;
             font-weight: 600;
+            margin-bottom: 10px;
         }
 
         p {
-            font-size: 16px;
+            font-size: 17px;
             line-height: 1.8;
             text-align: justify;
         }
 
-        /* Mobile Sidebar */
-        .menu-btn {
-            display: none;
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 26px;
-            background: none;
-            color: white;
+        .glow-btn {
+            background: #ffcc00;
+            color: black;
+            padding: 12px 20px;
             border: none;
             cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            border-radius: 5px;
+            text-transform: uppercase;
         }
 
+        .glow-btn:hover {
+            box-shadow: 0px 0px 10px #ffcc00;
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .sidebar {
-                width: 240px;
+                width: 250px;
                 transform: translateX(-100%);
-                position: absolute;
-                z-index: 1000;
-            }
-            .sidebar.show {
-                transform: translateX(0);
-            }
-            .menu-btn {
-                display: block;
             }
             .content {
                 margin-left: 0;
-                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar & Mobile Menu -->
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Events</a>
+        <a href="#">Join</a>
+    </div>
 
-    <div class="sidebar" id="sidebar">
+    <!-- Sidebar -->
+    <div class="sidebar">
         <h2>KITS IEDC</h2>
         <nav>
-            <a href="#home">Home</a>
             <a href="#about">About</a>
-            <a href="#submit">Submit</a>
             <a href="#events">Events</a>
-            <a href="#colab">Collaboration</a>
+            <a href="#submit">Submit Ideas</a>
             <a href="#join">Join Us</a>
         </nav>
     </div>
 
     <!-- Main Content -->
     <div class="content">
-        <!-- Banner Section -->
-        <div id="home" class="banner">
-            <img src="IMG-20240325-WA0097.jpg" alt="KITS IEDC FAMILY BANNER">
-        </div>
-
-        <!-- About Section -->
         <div id="about" class="section">
-            <h1>About KITS IEDC</h1>
+            <h1>About Us</h1>
             <p>
-                KITS IEDC is the **Innovation and Entrepreneurship Development Centre** of **KITS**.  
-                Our mission is to **foster innovation** by providing students with resources, mentorship, and networking opportunities.  
-                We aim to **empower students** to create innovative solutions and launch successful startups.  
+                Welcome to KITS IEDC, a leading platform for innovation and entrepreneurship.  
+                Our mission is to create an ecosystem where students can transform their ideas into real-world solutions.
             </p>
         </div>
 
-        <!-- Submit Section -->
-        <div id="submit" class="section">
-            <h2>Submit Your Ideas</h2>
-            <p>
-                Have an innovative idea? Submit it to KITS IEDC and get access to funding, mentorship,  
-                and a platform to transform your vision into reality.
-            </p>
-        </div>
-
-        <!-- Events Section -->
         <div id="events" class="section">
             <h2>Upcoming Events</h2>
-            <ul>
-                <li>🚀 <b>Hackathon</b> - 48-hour innovation sprint. <b>March 2025</b></li>
-                <li>💡 <b>Innovation Workshop</b> - Learn the latest trends. <b>April 2025</b></li>
-                <li>📢 <b>Entrepreneurship Meetup</b> - Network with experts. <b>May 2025</b></li>
-            </ul>
-        </div>
-
-        <!-- Collaboration Section -->
-        <div id="colab" class="section">
-            <h2>Collaborate with Us</h2>
             <p>
-                We partner with industry leaders, universities, and research institutions to drive innovation.  
-                Join us to support entrepreneurship and make an impact in the startup ecosystem.
+                Join our upcoming workshops, hackathons, and networking events designed to help  
+                aspiring entrepreneurs and innovators.
             </p>
         </div>
 
-        <!-- Join Section -->
+        <div id="submit" class="section">
+            <h2>Submit Your Ideas</h2>
+            <p>Have an idea? Submit it now and get mentorship, funding, and resources to bring it to life.</p>
+            <button class="glow-btn">Submit Now</button>
+        </div>
+
         <div id="join" class="section">
-            <h2>Join Us!</h2>
-            <p>
-                Be part of a thriving entrepreneurial community. Join KITS IEDC and start your innovation journey today.
-            </p>
+            <h2>Join Us</h2>
+            <p>Be part of a thriving community that supports entrepreneurship and innovation.</p>
+            <button class="glow-btn">Join Now</button>
         </div>
-
-        <!-- Footer -->
-        <footer>
-            <p>© 2025 KITS IEDC. All Rights Reserved.</p>
-        </footer>
     </div>
 
-    <!-- JavaScript for Sidebar -->
+    <!-- JavaScript for Scroll Animations -->
     <script>
-        function toggleMenu() {
-            document.getElementById("sidebar").classList.toggle("show");
-        }
+        document.addEventListener("scroll", function() {
+            let sections = document.querySelectorAll(".section");
+            sections.forEach(section => {
+                let position = section.getBoundingClientRect().top;
+                let screenHeight = window.innerHeight;
+                if (position < screenHeight - 100) {
+                    section.classList.add("show");
+                }
+            });
+        });
     </script>
 
 </body>
