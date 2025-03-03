@@ -3,146 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Sidebar Page</title>
+    <title>KITS IEDC - Innovation & Entrepreneurship</title>
     <style>
-        /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Arial", sans-serif;
+            font-family: "Poppins", sans-serif;
         }
 
-        /* Background Animation */
+        /* Updated Background */
         body {
-            height: 100vh;
+            background: #f4f4f9;
+            color: #333;
             display: flex;
-            overflow: hidden;
-            background: linear-gradient(45deg, #ff7eb3, #ff758c, #ff7eb3, #ff758c);
-            background-size: 400% 400%;
-            animation: gradientAnimation 8s ease infinite;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Gradient Animation */
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
+        .title-bar {
+            width: 100%;
+            background: rgba(0, 0, 50, 0.8);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             position: fixed;
-            left: -250px;
             top: 0;
+            z-index: 100;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .title-bar h1 {
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .sidebar {
+            width: 270px;
+            height: 100vh;
+            background: rgba(0, 0, 50, 0.9);
+            color: white;
+            position: fixed;
+            top: 60px;
+            left: -270px;
             padding: 20px;
-            transition: 0.5s ease;
+            transition: transform 0.4s ease-in-out;
+            box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 0 15px 15px 0;
+            z-index: 200;
         }
 
         .sidebar.active {
-            left: 0;
+            transform: translateX(270px);
         }
 
-        /* Sidebar Logo */
-        .sidebar .logo {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-        }
-
-        /* Sidebar Navigation */
-        .sidebar .nav-links {
+        .nav-links {
             list-style: none;
-            padding: 0;
+            margin-top: 20px;
         }
 
-        .sidebar .nav-links li {
+        .nav-links li {
             margin: 20px 0;
         }
 
-        .sidebar .nav-links a {
+        .nav-links a {
             color: white;
             text-decoration: none;
             font-size: 18px;
             display: block;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background 0.3s ease;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
         }
 
-        .sidebar .nav-links a:hover {
+        .nav-links a:hover {
             background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
         }
 
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            padding: 50px;
-            margin-left: 20px;
-            color: white;
-            text-align: center;
-        }
-
-        /* Menu Toggle Button */
         .menu-toggle {
-            font-size: 24px;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: transparent;
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
             border: none;
             color: white;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 80px 50px 50px;
+            transition: margin-left 0.4s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .main-content.shift {
+            margin-left: 270px;
+        }
+
+        .banner-container {
+            width: 100%;
+            max-height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .banner-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .banner-slider img {
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .banner-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            font-size: 20px;
+            z-index: 10;
         }
 
-        .menu-toggle:hover {
-            transform: scale(1.1);
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin: 20px auto;
+            border-radius: 12px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 900px;
         }
 
-        /* Responsive */
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #003366;
+        }
+
+        .section p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background: #003366;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            margin-top: auto;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
-                width: 200px;
+                width: 230px;
+                left: -230px;
             }
+
+            .sidebar.active {
+                transform: translateX(230px);
+            }
+
+            .main-content.shift {
+                margin-left: 230px;
+            }
+
             .main-content {
-                padding: 30px;
+                padding: 80px 30px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="sidebar" id="sidebar">
+
+    <div class="title-bar">
         <div class="logo">
-            <h2>My Web</h2>
+            <img src="Kitsiedc.png" alt="KITS IEDC">
         </div>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+    </div>
+
+    <div class="sidebar" id="sidebar">
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="submit.html">Submit Idea</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="Collab.html">Collab With Us</a></li>
+            <li><a href="Sidebar.html">Join KITS IEDC</a></li>
         </ul>
     </div>
 
-    <div class="main-content">
-        <button class="menu-toggle" id="menu-toggle">☰</button>
-        <h1>Welcome to the Blank Page</h1>
-        <p>This is a simple page with an animated sidebar and background.</p>
+    <div class="main-content" id="main-content">
+        <div class="banner-container">
+            <button class="banner-button prev" onclick="prevSlide()">❮</button>
+            <div class="banner-slider" id="banner-slider"></div>
+            <button class="banner-button next" onclick="nextSlide()">❯</button>
+        </div>
+
+        <div class="section">
+            <h2>What is KITS IEDC?</h2>
+            <p>
+                KITS IEDC (Innovation and Entrepreneurship Development Centre) is an initiative to foster 
+                innovation and entrepreneurship among students. Supported by government and academic institutions, 
+                it provides mentorship, resources, and funding to transform ideas into startups.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Why Join KITS IEDC?</h2>
+            <p>
+                - Access to industry mentors and experts.<br>
+                - Funding opportunities for student projects.<br>
+                - Networking with like-minded innovators.<br>
+                - Participation in national and international competitions.<br>
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 KITS IEDC. All Rights Reserved.</p>
+        <p>Address: Knowledge Institute of Technology, Salem, India</p>
+        <p>Contact: info@kitsiedc.com | +91 98765 43210</p>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const sidebar = document.getElementById("sidebar");
-            const toggleButton = document.getElementById("menu-toggle");
-
-            toggleButton.addEventListener("click", function() {
-                sidebar.classList.toggle("active");
-            });
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("sidebar").classList.toggle("active");
+            document.getElementById("main-content").classList.toggle("shift");
         });
     </script>
+
 </body>
 </html>
