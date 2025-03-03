@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KITS IEDC - Innovation & Entrepreneurship</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* Page Background */
+        body {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Title Bar (Header) */
+        .title-bar {
+            width: 100%;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Logo Styling */
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 270px;
+            height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            position: fixed;
+            top: 0; /* Ensures the sidebar starts at the very top */
+            left: -270px; /* Initially hidden */
+            padding: 20px;
+            transition: left 0.4s ease-in-out;
+            box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 0 15px 15px 0;
+            z-index: 200;
+        }
+
+        /* Sidebar Active (Visible) */
+        .sidebar.active {
+            left: 0; /* Moves sidebar into view */
+        }
+
+        /* Sidebar Links */
+        .nav-links {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .nav-links li {
+            margin: 20px 0;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* Menu Toggle Button */
+        .menu-toggle {
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: black;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            padding: 80px 50px 50px;
+            transition: margin-left 0.4s ease-in-out;
+            overflow-y: auto;
+        }
+
+        /* Adjusting Content Shift When Sidebar Opens */
+        .main-content.shift {
+            margin-left: 270px;
+        }
+
+        /* Slideshow Container */
+        .banner-container {
+            width: 100%;
+            max-height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Slideshow Image Wrapper */
+        .banner-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .banner-slider img {
+            width: 100%;
+            object-fit: cover;
+        }
+
+        /* Slideshow Navigation Buttons */
+        .banner-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 10;
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        /* Footer Section - Dark Theme */
+        .footer {
+            background: #222; /* Dark background */
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin-top: auto;
+            font-size: 14px;
+            border-top: 1px solid #444;
+        }
+
+        /* Responsive Styles for Smaller Screens */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 230px;
+                left: -230px;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .main-content.shift {
+                margin-left: 230px;
+            }
+
+            .main-content {
+                padding: 80px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Title Bar -->
+    <div class="title-bar">
+        <div class="logo">
+            <img src="Kitsiedc.png" alt="KITS IEDC">
+        </div>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="submit.html">Submit Idea</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="collab.html">Collab With Us</a></li>
+            <li><a href="join.html">Join KITS IEDC</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <!-- Slideshow Section -->
+        <div class="banner-container">
+            <button class="banner-button prev" onclick="prevSlide()">❮</button>
+            <div class="banner-slider" id="banner-slider"></div>
+            <button class="banner-button next" onclick="nextSlide()">❯</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        © 2025 KITS IEDC. All Rights Reserved. | Contact: info@kitsiedc.com | Address: KITS, India
+    </div>
+
+    <script>
+        // Sidebar Toggle Functionality
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            let sidebar = document.getElementById("sidebar");
+            let mainContent = document.getElementById("main-content");
+
+            // Toggle sidebar visibility
+            sidebar.classList.toggle("active");
+
+            // Adjust main content when sidebar is opened/closed
+            if (sidebar.classList.contains("active")) {
+                mainContent.classList.add("shift");
+            } else {
+                mainContent.classList.remove("shift");
+            }
+        });
+
+        // Slideshow Variables
+        let slideIndex = 0;
+        let images = ["slideshow/img1.jpg", "slideshow/img2.jpg", "slideshow/img3.jpg"];
+        let slider = document.getElementById("banner-slider");
+
+        // Load Images into Slideshow
+        images.forEach(src => {
+            let img = document.createElement("img");
+            img.src = src;
+            slider.appendChild(img);
+        });
+
+        // Function to Show a Specific Slide
+        function showSlide(index) {
+            slideIndex = (index + images.length) % images.length;
+            slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+        }
+
+        function nextSlide() { showSlide(slideIndex + 1); }
+        function prevSlide() { showSlide(slideIndex - 1); }
+
+        // Auto Slide Every 7 Seconds
+        setInterval(nextSlide, 7000);
+    </script>
+
+</body>
+</html>
