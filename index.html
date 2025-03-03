@@ -38,14 +38,8 @@
         }
 
         /* Logo Styling */
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
         .logo img {
             height: 40px;
-            margin-right: 10px;
         }
 
         /* Sidebar Navigation */
@@ -54,8 +48,8 @@
             height: 100vh;
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             position: fixed;
-            top: 0; /* Ensures the sidebar starts at the very top */
-            left: -270px; /* Initially hidden */
+            top: 0;
+            left: -270px;
             padding: 20px;
             transition: left 0.4s ease-in-out;
             box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.5);
@@ -63,9 +57,9 @@
             z-index: 200;
         }
 
-        /* Sidebar Active (Visible) */
+        /* Sidebar Active */
         .sidebar.active {
-            left: 0; /* Moves sidebar into view */
+            left: 0;
         }
 
         /* Sidebar Links */
@@ -110,50 +104,43 @@
             overflow-y: auto;
         }
 
-        /* Adjusting Content Shift When Sidebar Opens */
+        /* Content Shift When Sidebar Opens */
         .main-content.shift {
             margin-left: 270px;
         }
 
-        /* Slideshow Container */
-        .banner-container {
+        /* Hero Image */
+        .hero-image {
             width: 100%;
             max-height: 400px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Slideshow Image Wrapper */
-        .banner-slider {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .banner-slider img {
-            width: 100%;
             object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Slideshow Navigation Buttons */
-        .banner-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 20px;
-            z-index: 10;
+        /* Content Section */
+        .content-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .prev { left: 10px; }
-        .next { right: 10px; }
+        .content-section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .content-section p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
 
         /* Footer Section - Dark Theme */
         .footer {
-            background: #222; /* Dark background */
+            background: #222;
             color: white;
             padding: 15px;
             text-align: center;
@@ -162,7 +149,7 @@
             border-top: 1px solid #444;
         }
 
-        /* Responsive Styles for Smaller Screens */
+        /* Responsive Styles */
         @media (max-width: 768px) {
             .sidebar {
                 width: 230px;
@@ -197,27 +184,45 @@
     <div class="sidebar" id="sidebar">
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="submit.html">Submit Idea</a></li>
             <li><a href="events.html">Events</a></li>
-            <li><a href="collab.html">Collab With Us</a></li>
-            <li><a href="join.html">Join KITS IEDC</a></li>
+            <li><a href="Collab.html">Collab With Us</a></li>
+            <li><a href="Sidebar.html">Join KITS IEDC</a></li>
         </ul>
     </div>
 
     <!-- Main Content -->
     <div class="main-content" id="main-content">
-        <!-- Slideshow Section -->
-        <div class="banner-container">
-            <button class="banner-button prev" onclick="prevSlide()">❮</button>
-            <div class="banner-slider" id="banner-slider"></div>
-            <button class="banner-button next" onclick="nextSlide()">❯</button>
+        <!-- Hero Image -->
+        <img src="slideshow/img3.jpg" alt="KITS IEDC" class="hero-image">
+
+        <!-- About KITS IEDC -->
+        <div class="content-section">
+            <h2>Welcome to KITS IEDC</h2>
+            <p>
+                KITS Innovation and Entrepreneurship Development Centre (IEDC) is a dynamic platform that fosters creativity, innovation, and entrepreneurship among students and aspiring entrepreneurs. 
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h2>Our Mission</h2>
+            <p>
+                At KITS IEDC, we strive to cultivate an entrepreneurial mindset, enabling students to transform their innovative ideas into successful ventures. We provide mentorship, training, and incubation support to budding entrepreneurs.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h2>Opportunities & Support</h2>
+            <p>
+                Through workshops, hackathons, networking events, and funding opportunities, KITS IEDC empowers students with the skills and resources required to build sustainable businesses and contribute to the global startup ecosystem.
+            </p>
         </div>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        © 2025 KITS IEDC. All Rights Reserved. | Contact: kitsiedc@gmail.com | Address: Kottayam Institute Of Technology and Science,Chengalam East,Pallickathodu, Kerala,India
+        © 2025 KITS IEDC. All Rights Reserved. | Contact: info@kitsiedc.com | Address: KITS, India
     </div>
 
     <script>
@@ -226,40 +231,13 @@
             let sidebar = document.getElementById("sidebar");
             let mainContent = document.getElementById("main-content");
 
-            // Toggle sidebar visibility
             sidebar.classList.toggle("active");
-
-            // Adjust main content when sidebar is opened/closed
             if (sidebar.classList.contains("active")) {
                 mainContent.classList.add("shift");
             } else {
                 mainContent.classList.remove("shift");
             }
         });
-
-        // Slideshow Variables
-        let slideIndex = 0;
-        let images = ["slideshow/img1.jpg", "slideshow/img2.jpg", "slideshow/img3.jpg"];
-        let slider = document.getElementById("banner-slider");
-
-        // Load Images into Slideshow
-        images.forEach(src => {
-            let img = document.createElement("img");
-            img.src = src;
-            slider.appendChild(img);
-        });
-
-        // Function to Show a Specific Slide
-        function showSlide(index) {
-            slideIndex = (index + images.length) % images.length;
-            slider.style.transform = `translateX(-${slideIndex * 100}%)`;
-        }
-
-        function nextSlide() { showSlide(slideIndex + 1); }
-        function prevSlide() { showSlide(slideIndex - 1); }
-
-        // Auto Slide Every 7 Seconds
-        setInterval(nextSlide, 7000);
     </script>
 
 </body>
