@@ -3,243 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KITS IEDC – Empowering Innovation & Entrepreneurship</title>
+    <title>KITS IEDC - Innovation & Entrepreneurship</title>
     <style>
-        /* Reset Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
+            font-family: "Poppins", sans-serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #1e1e2f, #3a3a55);
-            color: white;
+            background: linear-gradient(135deg, #1e1e2f, #3a3a6f);
+            color: #ffffff;
             display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            height: 100vh;
-            background: #22223b;
+        .title-bar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             position: fixed;
-            transition: 0.3s;
-            padding-top: 20px;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            top: 0;
+            z-index: 100;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .title-bar h1 {
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .sidebar {
+            width: 270px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 60px;
+            left: -270px;
+            padding: 20px;
+            transition: transform 0.4s ease-in-out;
+            box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 0 15px 15px 0;
+            z-index: 200;
+        }
+
+        .sidebar.active {
+            transform: translateX(270px);
+        }
+
+        .nav-links {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .nav-links li {
+            margin: 20px 0;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .menu-toggle {
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 80px 50px 50px;
+            transition: margin-left 0.4s ease-in-out;
             overflow-y: auto;
         }
 
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #ffcc00;
+        .main-content.shift {
+            margin-left: 270px;
         }
 
-        .sidebar a {
-            display: block;
-            color: white;
-            padding: 15px;
-            text-decoration: none;
-            font-size: 18px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
-        }
-
-        .sidebar a:hover {
-            background: #44445a;
-        }
-
-        /* Sidebar Toggle */
-        .menu-btn {
-            display: none;
-            font-size: 24px;
-            background: none;
-            color: white;
-            border: none;
-            cursor: pointer;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-        }
-
-        /* Main Content */
-        .content {
-            margin-left: 280px;
-            padding: 20px;
-            flex: 1;
-            transition: margin-left 0.3s;
-        }
-
-        /* Banner */
-        .banner img {
+        .banner-container {
             width: 100%;
             max-height: 400px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 1s ease-in-out;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Sections */
+        .banner-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .banner-slider img {
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .banner-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 10;
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
         .section {
             background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out;
+            padding: 30px;
+            margin: 20px auto;
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 900px;
         }
 
-        .section:hover {
-            transform: translateY(-5px);
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
         }
 
-        h1, h2 {
-            color: #ffcc00;
+        .section p {
+            font-size: 16px;
+            line-height: 1.6;
         }
 
-        /* Logos Section */
-        .logos {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        .logos img {
-            width: 150px;
-            margin: 10px;
-            filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.2));
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .logos img:hover {
-            transform: scale(1.1);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: #22223b;
-            color: white;
-            margin-top: 30px;
-            border-radius: 5px;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
             .sidebar {
-                width: 220px;
+                width: 230px;
+                left: -230px;
             }
-            .content {
-                margin-left: 220px;
-            }
-        }
 
-        @media (max-width: 700px) {
-            .sidebar {
-                width: 0;
-                overflow: hidden;
+            .sidebar.active {
+                transform: translateX(230px);
             }
-            .content {
-                margin-left: 0;
+
+            .main-content.shift {
+                margin-left: 230px;
             }
-            .menu-btn {
-                display: block;
+
+            .main-content {
+                padding: 80px 30px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar -->
-    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-    <div class="sidebar" id="sidebar">
-        <h2>KITS IEDC</h2>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#submit">Submit</a>
-        <a href="#events">Events</a>
-        <a href="#colab">Collaboration</a>
-        <a href="#join">Join Us</a>
+    <div class="title-bar">
+        <div class="logo">
+            <img src="Kitsiedc.png" alt="KITS IEDC">
+            <h1>KITS IEDC</h1>
+        </div>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
     </div>
 
-    <!-- Main Content -->
-    <div class="content">
-        <div id="home" class="banner">
-            <img src="IMG-20240325-WA0097.jpg" alt="KITS IEDC FAMILY BANNER">
+    <div class="sidebar" id="sidebar">
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Programs</a></li>
+            <li><a href="#">Achievements</a></li>
+            <li><a href="#">Join Us</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content" id="main-content">
+        <div class="banner-container">
+            <button class="banner-button prev" onclick="prevSlide()">❮</button>
+            <div class="banner-slider" id="banner-slider"></div>
+            <button class="banner-button next" onclick="nextSlide()">❯</button>
         </div>
 
-        <!-- About Section -->
-        <div id="about" class="section">
-            <h1>About KITS IEDC</h1>
+        <div class="section">
+            <h2>What is KITS IEDC?</h2>
             <p>
-                KITS IEDC is dedicated to fostering a culture of **creativity, innovation, and entrepreneurship** among students.
-                Our mission is to empower young innovators to transform their ideas into successful startups.
+                KITS IEDC (Innovation and Entrepreneurship Development Centre) is an initiative to foster 
+                innovation and entrepreneurship among students. Supported by government and academic institutions, 
+                it provides mentorship, resources, and funding to transform ideas into startups.
             </p>
         </div>
 
-        <!-- Logos Section -->
-        <div class="logos">
-            <img src="Kitsiedc.png" alt="KITS IEDC Logo">
-            <img src="Ksumlogo.png" alt="KSUM Logo">
-            <img src="Iedc-logo.png" alt="IEDC Logo">
+        <div class="section">
+            <h2>Why Join KITS IEDC?</h2>
+            <p>
+                - Access to industry mentors and experts.<br>
+                - Funding opportunities for student projects.<br>
+                - Networking with like-minded innovators.<br>
+                - Participation in national and international competitions.<br>
+            </p>
         </div>
-
-        <!-- Submit Section -->
-        <div id="submit" class="section">
-            <h2>Submit Your Ideas</h2>
-            <p>We encourage students to submit their startup ideas and innovative projects.</p>
-        </div>
-
-        <!-- Events Section -->
-        <div id="events" class="section">
-            <h2>Upcoming Events</h2>
-            <ul>
-                <li>🚀 Hackathon - March 2025</li>
-                <li>💡 Innovation Workshop - April 2025</li>
-                <li>📢 Entrepreneurship Meetup - May 2025</li>
-            </ul>
-        </div>
-
-        <!-- Collaboration Section -->
-        <div id="colab" class="section">
-            <h2>Collaborate with Us</h2>
-            <p>Partner with KITS IEDC to drive innovation and build the next generation of startups.</p>
-        </div>
-
-        <!-- Join Section -->
-        <div id="join" class="section">
-            <h2>Join Us!</h2>
-            <p>Join KITS IEDC today and embark on your journey of **innovation and success**.</p>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <p>© 2025 KITS IEDC. All Rights Reserved.</p>
-        </footer>
     </div>
 
     <script>
-        function toggleSidebar() {
-            var sidebar = document.getElementById("sidebar");
-            if (sidebar.style.width === "220px") {
-                sidebar.style.width = "0";
-            } else {
-                sidebar.style.width = "220px";
-            }
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("sidebar").classList.toggle("active");
+            document.getElementById("main-content").classList.toggle("shift");
+        });
+
+        let slideIndex = 0;
+        let images = ["slideshow/img1.jpg", "slideshow/img2.jpg", "slideshow/img3.jpg"];
+        let slider = document.getElementById("banner-slider");
+
+        images.forEach(src => {
+            let img = document.createElement("img");
+            img.src = src;
+            slider.appendChild(img);
+        });
+
+        function showSlide(index) { 
+            slideIndex = (index + images.length) % images.length;
+            slider.style.transform = `translateX(-${slideIndex * 100}%)`;
         }
+
+        function nextSlide() { showSlide(slideIndex + 1); }
+        function prevSlide() { showSlide(slideIndex - 1); }
+
+        setInterval(nextSlide, 4000);
     </script>
 
 </body>
